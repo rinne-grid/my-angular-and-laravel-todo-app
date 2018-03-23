@@ -1,0 +1,64 @@
+<main role="main">
+        <section class="jumbotron text-center">
+          <div class="container">
+            <br>
+            <p class="grey-text">最新のタスク - {{ todoItemLatest?.created_at }}</p>
+            <h2>{{todoItemLatest?.title}}</h2>
+            <p>
+              {{todoItemLatest?.contents}}
+            <p>
+          </div>
+          <br>
+          <button class="btn btn-lg btn-outline-primary" (click)="open(content)">タスクを追加</button>
+        </section>
+
+        <div class="album py-5 bg-light">
+          <div class="container">
+            <div class="row">
+
+              <div class="col-md-4" *ngFor="let todoObj of todoListObserve">
+                <div class="card mb-4 box-shadow">
+                  <div class="card-header">
+                    <p class="card-text">{{ todoObj.title }} - {{ todoObj.created_at }}</p>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">{{ todoObj.contents}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+
+        <ng-template #content let-c="close" let-d="dismiss">
+          <form>
+            <div class="modal-header">
+              <h4 class="modal-title col-sm-11">タスクを入力</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross Click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label for="editTitle" class="col-sm-3 col-form-label">タスク件名</label>
+                <div class="col-sm-9">
+                  <input [(ngModel)]="editTitle" id="editTitle" name="editTitle" class="form-control" placeholder="件名" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="editTitle" class="col-sm-3 col-form-label">タスク本文</label>
+                <div class="col-sm-9">
+                  <textarea [(ngModel)]="editBody" name="editBody" class="form-control" placeholder="タスク内容"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">キャンセル</button>
+              <button type="button" class="btn btn-primary" (click)="createTodo()">保存</button>
+            </div>
+          </form>
+        </ng-template>
+      </main>
+
+
