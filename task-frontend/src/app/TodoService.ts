@@ -9,8 +9,6 @@ import { environment} from '../environments/environment'
 export class TodoService {
   constructor(private http: HttpClient) {}
 
-  apiUrl = "http://localhost:8000/api/todos";
-
   apiGetTodos = "todos";
   apiCreateTodo = "todos";
 
@@ -40,17 +38,21 @@ export class TodoService {
       contents
     };
 
-    let headers: HttpHeaders = new HttpHeaders();
-    headers.append('X-Requested-With', 'XMLHttpRequest');
-    headers.append('Content-Type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
-
+    // let headers: HttpHeaders = new HttpHeaders();
+    // headers.append('X-Requested-With', 'XMLHttpRequest');
+    // headers.append('Content-Type', 'application/json');
+    // headers.append('Access-Control-Allow-Origin', '*');
+    let headers = new HttpHeaders({ 
+      'Content-Type': 'application/json',
+    });
+    
     return this.http.post(environment.API_ENDPOINT + this.apiCreateTodo,
       JSON.stringify(body),
       {
-        withCredentials: true,
         headers: headers
-      }).subscribe();
+      }).subscribe( response => {
+        console.log(response);
+      });
 
   }
 

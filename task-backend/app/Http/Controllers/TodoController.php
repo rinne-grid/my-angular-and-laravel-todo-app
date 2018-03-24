@@ -38,7 +38,9 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         //
-        var_export($request);
+        //var_export($request);
+        return response(var_export($request));
+        //return response(var_export($request));
     }
 
     /**

@@ -17,8 +17,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::resource('todos', 'TodoController');
+//Route::resource('todos', 'TodoController'/*, ['only' => [
+//    'index', 'store', 'update'
+//]]*/);//->middleware('cors');
+// Route::group(['middleware' => 'cors'], function() {
+//     Route::post('/todos', 'TodoController@store');
+// });
 
-Route::resource('todos', 'TodoController', ['only' => [
-    'index', 'store', 'update'
-]]);
 
+// Route::post('todos', function () {
+//     return ['status'=>'success'];
+//  })->middleware('cors');
+
+//  Route::resource('todos', )
