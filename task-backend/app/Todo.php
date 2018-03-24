@@ -7,7 +7,7 @@ use App\User;
 
 class Todo extends Model
 {
-    protected $fillable = ['title', 'contents'];
+    protected $fillable = ['title', 'contents', 'user_id'];
     public function user() {
         return $this->belongsTo(User::class);
     }

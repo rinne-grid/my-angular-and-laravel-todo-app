@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit,  } from '@angular/core';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TodoService } from '../TodoService';
 import { Todo } from '../Todo';
 @Component({
@@ -10,7 +10,7 @@ import { Todo } from '../Todo';
 export class TodosComponent implements OnInit {
 
   constructor(private todoService: TodoService,
-              private modalService: NgbModal
+              private modalService: NgbModal,
             ) {}
 
   closeResult: string;
@@ -19,9 +19,15 @@ export class TodosComponent implements OnInit {
 
   editTitle: string;
   editBody: string;
+  modalReference: NgbModalRef;
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
     this.todoService.get().subscribe(responses => {
+      this.todoListObserve = [];
       responses.forEach(todo => {
         let todoObj:Todo = new Todo();
         todoObj.id          = todo.id;
@@ -41,18 +47,25 @@ export class TodosComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content).result.then((result) => {
+    this.modalReference = this.modalService.open(content);
+    this.modalReference.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`
-    })
+    });
   }
 
   createTodo() {
     let todo:Todo = new Todo();
     todo.title = this.editTitle;
     todo.contents = this.editBody;
-    this.todoService.create(todo);
+    this.todoService.create(todo).subscribe(response => {
+      console.log(response);
+      console.log("登録成功");
+      //this.modalService.close();
+      this.modalReference.close();
+      this.refresh();
+    });
 
   }
 

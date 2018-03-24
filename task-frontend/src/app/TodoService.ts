@@ -50,8 +50,6 @@ export class TodoService {
       JSON.stringify(body),
       {
         headers: headers
-      }).subscribe( response => {
-        console.log(response);
       });
 
   }

@@ -38,9 +38,18 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         //
+        $todo = new Todo();
+        $todo->user_id = 1;
+        $todo->fill($request->all())->save();
+        
+
         //var_export($request);
-        return response(var_export($request));
         //return response(var_export($request));
+        //return response(var_export($request));
+        
+        return response()->json([
+            'status' => '200'
+        ]);
     }
 
     /**

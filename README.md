@@ -1,7 +1,7 @@
 
 * Angular + Laravelで勉強がてら、TODOアプリ実装中
     * [x] TODOの取得
-    * [ ] TODOの作成
+    * [x] TODOの作成
     * [ ] TODOの更新
     * [ ] TODOの削除
     * [ ] ユーザごとのTODO管理
