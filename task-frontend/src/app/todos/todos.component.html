@@ -16,12 +16,12 @@
           <div class="container">
             <div class="row">
 
-              <div class="col-md-4" *ngFor="let todoObj of todoListObserve">
+              <div class="col-md-4 todo-box" *ngFor="let todoObj of todoListObserve trackBy: trackTodo" (click)="open(content, todoObj)" >
                 <div class="card mb-4 box-shadow">
-                  <div class="card-header">
-                    <p class="card-text">{{ todoObj.title }} - {{ todoObj.created_at }}</p>
-                  </div>
-                  <div class="card-body">
+                  <div class="card-header bg-info text-white">
+                      <p class="card-text">{{ todoObj.title }} - {{ todoObj.created_at }}</p>
+                    </div>
+                  <div class="card-body bg-light">
                     <p class="card-text">{{ todoObj.contents}}</p>
                   </div>
                 </div>
@@ -55,7 +55,11 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">キャンセル</button>
-              <button type="button" class="btn btn-primary" (click)="createTodo()">保存</button>
+
+              <button type="button" class="btn btn-primary" 
+                (click)="createTodo()">保存
+                <div [ngClass]="loadingControl"></div>                  
+              </button>
             </div>
           </form>
         </ng-template>

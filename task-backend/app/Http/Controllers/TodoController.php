@@ -48,7 +48,8 @@ class TodoController extends Controller
         //return response(var_export($request));
         
         return response()->json([
-            'status' => '200'
+            'status' => '200',
+            'newTodoData' => $todo
         ]);
     }
 
@@ -84,6 +85,15 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $todo = Todo::find($id);
+        $todo->title = $request->title;
+        $todo->contents = $request->contents;
+        $todo->save();
+
+        return response()->json([
+            'status' => 'test',
+            'id' => $id
+        ]);
     }
 
     /**
