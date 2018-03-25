@@ -91,7 +91,7 @@ class TodoController extends Controller
         $todo->save();
 
         return response()->json([
-            'status' => 'test',
+            'status' => '200',
             'id' => $id
         ]);
     }
@@ -105,5 +105,10 @@ class TodoController extends Controller
     public function destroy($id)
     {
         //
+        Todo::destroy($id);
+        return response()->json([
+            'status' => '200',
+            'id' => $id
+        ]);
     }
 }

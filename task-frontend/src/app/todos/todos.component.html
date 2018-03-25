@@ -2,14 +2,14 @@
         <section class="jumbotron text-center">
           <div class="container">
             <br>
-            <p class="grey-text">最新のタスク - {{ todoItemLatest?.created_at }}</p>
+            <p class="grey-text">最新のTodo - {{ todoItemLatest?.created_at }}</p>
             <h2>{{todoItemLatest?.title}}</h2>
             <p>
               {{todoItemLatest?.contents}}
             <p>
           </div>
           <br>
-          <button class="btn btn-lg btn-outline-primary" (click)="open(content)">タスクを追加</button>
+          <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Todoを追加</button>
         </section>
 
         <div class="album py-5 bg-light">
@@ -34,22 +34,22 @@
         <ng-template #content let-c="close" let-d="dismiss">
           <form>
             <div class="modal-header">
-              <h4 class="modal-title col-sm-11">タスクを入力</h4>
+              <h4 class="modal-title col-sm-11">Todoを入力</h4>
               <button type="button" class="close" aria-label="Close" (click)="d('Cross Click')">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="editTitle" class="col-sm-3 col-form-label">タスク件名</label>
+                <label for="editTitle" class="col-sm-3 col-form-label">Todo件名</label>
                 <div class="col-sm-9">
                   <input [(ngModel)]="editTitle" id="editTitle" name="editTitle" class="form-control" placeholder="件名" >
                 </div>
               </div>
               <div class="form-group row">
-                <label for="editTitle" class="col-sm-3 col-form-label">タスク本文</label>
+                <label for="editTitle" class="col-sm-3 col-form-label">Todo内容</label>
                 <div class="col-sm-9">
-                  <textarea [(ngModel)]="editBody" name="editBody" class="form-control" placeholder="タスク内容"></textarea>
+                  <textarea [(ngModel)]="editBody" name="editBody" class="form-control" placeholder="内容"></textarea>
                 </div>
               </div>
             </div>

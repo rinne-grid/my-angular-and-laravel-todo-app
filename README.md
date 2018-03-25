@@ -6,4 +6,4 @@
     * [ ] TODOの削除
     * [ ] ユーザごとのTODO管理
 
-![MyTodo](http://rinsymbol.sakura.ne.jp/github_images/mytodos.png "mytodo")
+![MyTodo](http://rinsymbol.sakura.ne.jp/github_images/mytodos2.png "mytodo")
