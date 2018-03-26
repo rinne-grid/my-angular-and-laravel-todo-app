@@ -3,7 +3,7 @@
     * [x] TODOの取得
     * [x] TODOの作成
     * [x] TODOの更新
-    * [ ] TODOの削除
+    * [x] TODOの削除
     * [ ] ユーザごとのTODO管理
 
 ![MyTodo](http://rinsymbol.sakura.ne.jp/github_images/mytodos2.png "mytodo")

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { RequestOptions, RequestMethod } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +15,7 @@ import { environment} from '../environments/environment'
 export class TodoService {
   apiGetTodos = "todos";
   apiCreateTodo = "todos";
+  apiDeleteTodo = "todos";
 
   /**
    * @method constructor
@@ -94,5 +95,25 @@ export class TodoService {
         headers: headers
       }
     );
+  }
+
+  /**
+   * @method delete
+   * @description APIにHTTPリクエストを送信し、Todoを削除する
+   * @param Todo
+   */
+  delete(todo: Todo) {
+    const id = todo.id;
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.delete(environment.API_ENDPOINT + this.apiDeleteTodo + "/" + id,
+      {
+        headers: headers,
+      },
+    );
+
   }
 }

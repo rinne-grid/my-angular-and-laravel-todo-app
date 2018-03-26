@@ -26,6 +26,15 @@ export class TodosComponent implements OnInit {
     "ld-spin": false,
     "running": false
   };
+
+  // モーダル登録ボタンのローディング管理用
+  loadingControlDel = {
+    "ld": true,
+    "ld-ring": false,
+    "ld-spin": false,
+    "running": false
+  };
+
   // モーダル参照用。closeする際に利用
   modalReference: NgbModalRef;
 
@@ -162,6 +171,26 @@ export class TodosComponent implements OnInit {
     }
 
   }
+  /**
+   * @method deleteTodo
+   * @description Todoの削除APIを呼び出す
+   */
+  deleteTodo() {
+    this.setLoadingConrolDel(true);
+    let todo = new Todo();
+    todo.id = this.currentTodo.id;
+    this.todoService.delete(todo).subscribe(response => {
+      for(let i = 0; i < this.todoListObserve.length - 1; i++) {
+        if(this.todoListObserve[i].id === todo.id) {
+          this.todoListObserve.splice(i, 1);
+          break;
+        }
+      }
+      this.refresh();
+      this.setLoadingConrolDel(false);
+      this.modalReference.close();
+    });
+  }
 
   /**
    * @method trackTodo
@@ -204,5 +233,16 @@ export class TodosComponent implements OnInit {
     this.loadingControl["ld-spin"] = bool;
     this.loadingControl["ld-ring"] = bool;
     this.loadingControl["running"] = bool;
+  }
+
+  /**
+   * @method setLoadingConrolDel
+   * @description ローディング用スタイルの有効・無効を制御する 
+   * @param bool 
+   */
+  private setLoadingConrolDel(bool: boolean) {
+    this.loadingControlDel["ld-spin"] = bool;
+    this.loadingControlDel["ld-ring"] = bool;
+    this.loadingControlDel["running"] = bool;
   }
 }
